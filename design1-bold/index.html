@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baugesellschaft Brockhoff mbH – Regional. Stark. Baustark.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f1114;
+      --bg-card: #1a1d23;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --text-white: #ffffff;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --border: #2d3340;
+      --green: #22c55e;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--bg-dark); color:var(--text-white); overflow-x:hidden; }
+    
+    /* NAV */
+    nav { position:fixed; top:0; width:100%; z-index:100; background:rgba(15,17,20,0.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:16px 0; }
+    .nav-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--text-white); }
+    .logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { color:var(--text-muted); text-decoration:none; font-size:14px; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text-white); }
+    .nav-cta { background:var(--accent); color:#000; padding:10px 24px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; transition:all 0.2s; }
+    .nav-cta:hover { background:var(--accent-hover); transform:translateY(-1px); }
+    .mobile-menu { display:none; background:none; border:none; color:var(--text-white); cursor:pointer; }
+    
+    /* HERO */
+    .hero { min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding:120px 24px 80px; }
+    .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 20% 50%, rgba(245,158,11,0.12) 0%, transparent 60%); }
+    .hero-inner { max-width:1200px; margin:0 auto; width:100%; position:relative; z-index:1; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2); padding:8px 16px; border-radius:100px; font-size:13px; color:var(--accent); font-weight:500; margin-bottom:32px; }
+    .hero-badge::before { content:''; width:8px; height:8px; background:var(--green); border-radius:50%; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
+    .hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(48px, 7vw, 88px); font-weight:700; line-height:1.05; letter-spacing:-0.03em; margin-bottom:24px; }
+    .hero h1 .accent { color:var(--accent); }
+    .hero p { font-size:20px; color:var(--text-muted); max-width:600px; line-height:1.6; margin-bottom:40px; }
+    .hero-actions { display:flex; gap:16px; flex-wrap:wrap; }
+    .btn-primary { background:var(--accent); color:#000; padding:16px 32px; border-radius:10px; text-decoration:none; font-weight:700; font-size:16px; transition:all 0.2s; display:inline-flex; align-items:center; gap:8px; border:none; cursor:pointer; }
+    .btn-primary:hover { background:var(--accent-hover); transform:translateY(-2px); box-shadow:0 8px 30px rgba(245,158,11,0.3); }
+    .btn-outline { background:transparent; color:var(--text-white); padding:16px 32px; border-radius:10px; text-decoration:none; font-weight:600; font-size:16px; border:1px solid var(--border); transition:all 0.2s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-outline:hover { border-color:var(--accent); color:var(--accent); }
+    
+    /* STATS */
+    .stats { padding:40px 24px; }
+    .stats-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+    .stat-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; }
+    .stat-number { font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:700; color:var(--accent); margin-bottom:4px; }
+    .stat-label { font-size:14px; color:var(--text-muted); }
+    
+    /* SECTIONS */
+    section { padding:100px 24px; }
+    .section-inner { max-width:1200px; margin:0 auto; }
+    .section-label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:12px; }
+    .section-title { font-family:'Space Grotesk',sans-serif; font-size:clamp(32px, 4vw, 48px); font-weight:700; line-height:1.15; margin-bottom:16px; letter-spacing:-0.02em; }
+    .section-subtitle { font-size:18px; color:var(--text-muted); max-width:600px; line-height:1.6; margin-bottom:60px; }
+    
+    /* SERVICES */
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .service-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:32px; transition:all 0.3s; position:relative; overflow:hidden; }
+    .service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent); transform:scaleX(0); transition:transform 0.3s; transform-origin:left; }
+    .service-card:hover::before { transform:scaleX(1); }
+    .service-card:hover { border-color:rgba(245,158,11,0.3); transform:translateY(-4px); }
+    .service-icon { width:48px; height:48px; background:rgba(245,158,11,0.1); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:20px; }
+    .service-card h3 { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; margin-bottom:12px; }
+    .service-card p { color:var(--text-muted); font-size:14px; line-height:1.6; }
+    
+    /* PROJECTS */
+    .projects { background:var(--bg-card); }
+    .projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .project-card { border-radius:16px; overflow:hidden; position:relative; background:var(--bg-dark); border:1px solid var(--border); }
+    .project-image { width:100%; height:240px; background:linear-gradient(135deg, #2d3340 0%, #1a1d23 100%); display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:14px; position:relative; }
+    .project-image::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, var(--bg-card), transparent 50%); }
+    .project-info { padding:24px; position:relative; z-index:1; }
+    .project-tag { display:inline-block; background:rgba(245,158,11,0.1); color:var(--accent); padding:4px 12px; border-radius:100px; font-size:12px; font-weight:600; margin-bottom:12px; }
+    .project-info h3 { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; margin-bottom:8px; }
+    .project-info p { color:var(--text-muted); font-size:14px; }
+    
+    /* ABOUT */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .about-image { width:100%; height:400px; background:linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border-radius:20px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--text-dim); }
+    .about-content h2 { font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:700; margin-bottom:20px; letter-spacing:-0.02em; }
+    .about-content p { color:var(--text-muted); font-size:16px; line-height:1.7; margin-bottom:16px; }
+    .about-list { list-style:none; margin:24px 0; }
+    .about-list li { padding:12px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px; color:var(--text-muted); font-size:15px; }
+    .about-list li::before { content:'✓'; color:var(--accent); font-weight:700; }
+    
+    /* CONTACT */
+    .contact { background:var(--bg-card); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+    .contact-info h3 { font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600; margin-bottom:24px; }
+    .contact-item { display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+    .contact-icon { width:40px; height:40px; background:rgba(245,158,11,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .contact-text { font-size:15px; }
+    .contact-text a { color:var(--accent); text-decoration:none; font-weight:500; }
+    .contact-text a:hover { text-decoration:underline; }
+    .contact-text small { display:block; color:var(--text-dim); font-size:13px; margin-top:2px; }
+    .contact-form { display:flex; flex-direction:column; gap:16px; }
+    .contact-form input, .contact-form textarea, .contact-form select { background:var(--bg-dark); border:1px solid var(--border); border-radius:10px; padding:14px 16px; color:var(--text-white); font-size:15px; font-family:inherit; transition:border-color 0.2s; }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { outline:none; border-color:var(--accent); }
+    .contact-form textarea { min-height:120px; resize:vertical; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    
+    /* WHATSAPP FLOAT */
+    .whatsapp-float { position:fixed; bottom:24px; right:24px; z-index:99; width:60px; height:60px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s; }
+    .whatsapp-float:hover { transform:scale(1.1); }
+    .whatsapp-float svg { width:32px; height:32px; fill:white; }
+    
+    /* FOOTER */
+    footer { padding:60px 24px 30px; border-top:1px solid var(--border); }
+    .footer-inner { max-width:1200px; margin:0 auto; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+    .footer-brand p { color:var(--text-dim); font-size:14px; line-height:1.6; margin-top:12px; }
+    .footer-col h4 { font-size:14px; font-weight:600; margin-bottom:16px; color:var(--text-white); }
+    .footer-col a { display:block; color:var(--text-dim); text-decoration:none; font-size:14px; padding:4px 0; transition:color 0.2s; }
+    .footer-col a:hover { color:var(--accent); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:24px; display:flex; justify-content:space-between; color:var(--text-dim); font-size:13px; }
+    
+    /* RESPONSIVE */
+    @media (max-width:968px) {
+      .services-grid, .projects-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-inner { grid-template-columns:repeat(2,1fr); }
+      .about-grid, .contact-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:640px) {
+      .nav-links { display:none; }
+      .mobile-menu { display:block; }
+      .services-grid, .projects-grid, .stats-inner { grid-template-columns:1fr; }
+      .hero-actions { flex-direction:column; }
+      .form-row { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">BROCKHOFF<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#projekte">Projekte</a></li>
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">Anfrage stellen</a>
+    <button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menü">☰</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Regional in Wallenhorst & Osnabrück</div>
+    <h1>Wir bauen<br> Ihre <span class="accent">Zukunft.</span></h1>
+    <p>Baugesellschaft-Brockhoff mbH – Ihr Full-Service-Bauunternehmen für Hochbau, Tiefbau und Bauplanung. Von der ersten Skizze bis zur Schlüsselübergabe.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Kostenlos anfragen →</a>
+      <a href="tel:0540730912" class="btn-outline">📞 05407 30912</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat-card">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Jahre Erfahrung</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Projekte realisiert</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Full-Service</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">5★</div>
+      <div class="stat-label">Kundenzufriedenheit</div>
+    </div>
+  </div>
+</section>
+
+<section id="leistungen">
+  <div class="section-inner">
+    <div class="section-label">Unsere Leistungen</div>
+    <h2 class="section-title">Alles aus einer Hand</h2>
+    <p class="section-subtitle">Von der Planung bis zur Umsetzung – wir begleiten Sie durch jedes Bauprojekt mit Kompetenz und Leidenschaft.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Hochbau</h3>
+        <p>Maisonette-, Reihen- und Einfamilienhäuser. Wir bauen Ihr Traumhaus nach höchsten Qualitätsstandards.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛣️</div>
+        <h3>Tiefbau</h3>
+        <p>Tiefbaumaßnahmen, Erdarbeiten, Wegebau und Entwässerung. Fundament für jedes Projekt.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📐</div>
+        <h3>Bauplanung</h3>
+        <p>Architektur und Planung aus einer Hand. Von der Skizze bis zur Baugenehmigung.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Hausbau</h3>
+        <p>Fertig- und Massivhausbau. Individuelle Lösungen für Ihre Wohnbedürfnisse.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔨</div>
+        <h3>Innenausbau</h3>
+        <p>Fußböden, Wände, Decken – wir gestalten Ihre Räume perfekt.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Abbrucharbeiten</h3>
+        <p>Sachgerechter Rückbau und Entsorgung. Professionell und termingerecht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projekte" class="projects">
+  <div class="section-inner">
+    <div class="section-label">Referenzen</div>
+    <h2 class="section-title">Unsere Projekte</h2>
+    <p class="section-subtitle">Ausgewählte Projekte, die unsere Qualität und Vielfalt beweisen.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">[Projekt-Foto: Neubau Einfamilienhaus]</div>
+        <div class="project-info">
+          <span class="project-tag">Hochbau</span>
+          <h3>Einfamilienhaus mit Garten</h3>
+          <p>Komplettneubau, 180 m², Wallenhorst 2024</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-image">[Projekt-Foto: Gewerbebau]</div>
+        <div class="project-info">
+          <span class="project-tag">Gewerbe</span>
+          <h3>Gewerbeimmobilie Osnabrück</h3>
+          <p>Bürokomplex, 1.200 m², Osnabrück 2023</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-image">[Projekt-Foto: Tiefbau]</div>
+        <div class="project-info">
+          <span class="project-tag">Tiefbau</span>
+          <h3>Wegebau und Erschließung</h3>
+          <p>Straßenbaumaßnahme mit Entwässerung, 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ueber-uns">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image">[Foto: Baustelle / Team]</div>
+      <div class="about-content">
+        <div class="section-label">Über uns</div>
+        <h2>Regional verwurzelt. Qualität verpflichtet.</h2>
+        <p>Seit über 30 Jahren sind wir Baugesellschaft-Brockhoff mbH Ihr zuverlässiger Partner für Bauvorhaben in Wallenhorst und der gesamten Region Osnabrück.</p>
+        <p>Was als kleines Familienunternehmen begann, ist heute ein Full-Service-Bauunternehmen mit erfahrenen Fachkräften und modernster Technik.</p>
+        <ul class="about-list">
+          <li>Zertifiziert nach DIN-Normen</div>
+          <li>Meisterbetrieb mit qualifizierten Fachkräften</li>
+          <li>Regionale Verankerung im Osnabrücker Land</li>
+          <li>Transparente Planung und faire Preise</li>
+          <li>Pünktliche Fertigstellung garantiert</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="contact">
+  <div class="section-inner">
+    <div class="section-label">Kontakt</div>
+    <h2 class="section-title">Lassen Sie uns starten</h2>
+    <p class="section-subtitle">Schreiben Sie uns oder rufen Sie an. Wir beraten Sie gerne unverbindlich.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>So erreichen Sie uns</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <a href="tel:0540730912">05407 30912</a>
+            <small>Telefon (Hauptnummer)</small>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📠</div>
+          <div class="contact-text">
+            05407 30758
+            <small>Fax</small>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-text">
+            <a href="https://wa.me/490540730912">WhatsApp</a>
+            <small>Schnellkontakt per Nachricht</small>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-text">
+            <a href="mailto:info@brockhoff.de">info@brockhoff.de</a>
+            <small>E-Mail-Anfrage</small>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            Charlottenburger Straße 24, 49134 Wallenhorst
+            <small>Öffnungszeiten: Mo–Fr 7:30–17:00 Uhr</small>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Anfrage wird gesendet...');">
+        <div class="form-row">
+          <input type="text" placeholder="Name *" required>
+          <input type="tel" placeholder="Telefon">
+        </div>
+        <input type="email" placeholder="E-Mail *" required>
+        <select>
+          <option value="">Leistung wählen...</option>
+          <option>Hochbau</option>
+          <option>Tiefbau</option>
+          <option>Bauplanung</option>
+          <option>Hausbau</option>
+          <option>Innenausbau</option>
+          <option>Abbrucharbeiten</option>
+          <option>Außenanlagen</option>
+          <option>Sonstiges</option>
+        </select>
+        <textarea placeholder="Beschreiben Sie Ihr Projekt..."></textarea>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Anfrage absenden →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">BROCKHOFF<span>.</span></div>
+        <p>Baugesellschaft-Brockhoff mbH<br>Charlottenburger Straße 24<br>49134 Wallenhorst<br>HRB 16069</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <a href="#">Hochbau</a>
+        <a href="#">Tiefbau</a>
+        <a href="#">Bauplanung</a>
+        <a href="#">Hausbau</a>
+        <a href="#">Innenausbau</a>
+        <a href="#">Abbrucharbeiten</a>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <a href="#">Über uns</a>
+        <a href="#">Projekte</a>
+        <a href="#">Karriere</a>
+        <a href="#">Zertifizierungen</a>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+        <a href="#">Barrierefreiheit</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Baugesellschaft-Brockhoff mbH. Alle Rechte vorbehalten.</span>
+      <span>DIQP Zertifiziert Top Service</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/490540730912" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 0C7.165 0 .003 7.16.003 15.997c0 2.823.738 5.575 2.14 8.002L.01 32l8.182-2.097a15.95 15.95 0 007.812 1.986h.002C24.84 31.89 32 24.73 32 15.897 32 7.16 7.16 0 16.004 0zm0 28.87h-.002a12.89 12.89 0 01-6.69-1.84l-.48-.286-4.97 1.27 1.325-4.84-.312-.497A12.83 12.83 0 013.13 15.997C3.13 8.89 8.9 3.13 16.004 3.13c7.1 0 12.87 5.76 12.87 12.867 0 7.1-5.77 12.873-12.87 12.873zm7.137-9.67c-.387-.193-2.288-1.13-2.642-1.262-.353-.133-.61-.2-.867.193-.258.395-.998 1.262-1.224 1.52-.228.258-.454.292-.841.096-.387-.193-1.632-.6-3.108-1.916-1.152-1.03-1.93-2.3-2.157-2.687-.228-.387-.024-.597.17-.793.176-.176.387-.454.58-.682.194-.228.258-.387.387-.645.13-.258.065-.486-.033-.682-.096-.193-.867-2.093-1.19-2.864-.313-.75-.63-.648-.867-.66l-.74-.013c-.258 0-.677.096-1.03.486-.353.39-1.36 1.328-1.36 3.242s1.392 3.762 1.586 4.02c.193.258 2.737 4.18 6.634 5.863.928.4 1.652.64 2.218.82.933.3 1.78.258 2.45.157.748-.112 2.288-.935 2.61-1.839.322-.905.322-1.68.224-1.839-.096-.161-.353-.258-.74-.451z"/></svg>
+</a>
+
+</body>
+</html>
