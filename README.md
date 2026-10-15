@@ -54,6 +54,19 @@ Drei Design-Vorschläge für eine moderne Webseite der Baugesellschaft-Brockhoff
 - Abgerundete Ecken (16-24px) für freundlichen Look
 - Fokus auf Energieeffizienz und Ökologie
 
+### 4. Warm & Struktur (Wening-Bau-Inspiriert) → `/design4-wening/index.html`
+**Farben:** Warme Neutrale/Beige + Anthrazit + Gold-Akzent
+**Stimmung:** Strukturiert mit Gefühl, handwerklich, persönlich, traditionsvoll
+**Zielgruppe:** Bauherren, die Wert auf Massivbau, Familienwerte und persönliche Betreuung legen
+**Besonderheiten:**
+- Inspiriert von wening-bau.de – warme Beigetöne statt greller Farben
+- Kernbotschaft: *"Bauen mit Struktur. Und mit Gefühl."*
+- Werte-Strip: Massiv / Individuell / Regional
+- Familien-Section (6. Generation, Werte, regionale Partner)
+- Dunkle Hero-Section mit Anthrazit-Gold-Kontrast, scharfe Ecken (keine Rundungen)
+- 3 Bauherren-Testimonials ("Was Bauherren sagen")
+- Services als nummerierte Cards (01–06) auf dunklem Grund
+
 ---
 
 ## 📐 Gemeinsame Elemente
